@@ -1,0 +1,56 @@
+.Feedback__section {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  -webkit-box-shadow: 5px 9px 6px -4px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 5px 9px 6px -4px rgba(66, 68, 90, 1);
+  box-shadow: 5px 9px 6px -4px rgb(117, 117, 126);
+}
+
+.Feedback__title {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.Feedback__controls {
+  margin-bottom: 15px;
+}
+
+.Feedback__btn {
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(186, 174, 174);
+  cursor: pointer;
+
+  transition: all ease-in-out 200ms;
+}
+
+.Feedback__btn:hover,
+.Feedback__btn:focus {
+  color: rgb(255, 255, 255);
+  background-color: rgb(92, 92, 92);
+}
+
+.Feedback__btn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.Feedback__counter {
+  margin: auto;
+  width: 50%;
+}
+
+.Feedback__list {
+  padding: 5px;
+}
+
+.Feedback__list:not(:first-child) {
+  border-top: 1px solid rgb(149, 149, 149);
+}
