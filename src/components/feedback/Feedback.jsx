@@ -10,15 +10,15 @@ export default function Feedback() {
 
   const increment = prevState => prevState + 1;
 
-  const goodFeedback = () => {
+  const handleGoodFeedback = () => {
     setGood(increment);
   };
 
-  const neutralFeedback = () => {
+  const handleNeutralFeedback = () => {
     setNeutral(increment);
   };
 
-  const badFeedback = () => {
+  const handlebadFeedback = () => {
     setBad(increment);
   };
 
@@ -30,9 +30,9 @@ export default function Feedback() {
       <section className={s.Feedback__section}>
         <p className={s.Feedback__title}>Please leave feedback</p>
         <Controls
-          goodFeedback={goodFeedback}
-          neutralFeedback={neutralFeedback}
-          badFeedback={badFeedback}
+          onGoodFeedback={handleGoodFeedback}
+          onNeutralFeedback={handleNeutralFeedback}
+          onBadFeedback={handlebadFeedback}
         />
         <p className={s.Feedback__title}>Statistics:</p>
         {totalFeedback > 0 ? (
