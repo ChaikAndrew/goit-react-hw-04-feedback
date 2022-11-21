@@ -1,80 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Controls from './Controls';
 import Statistics from './Statistics';
 import s from './style.module.css';
 
-class Feedback extends React.Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+export default function Feedback() {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const increment = prevState => prevState + 1;
+
+  const goodFeedback = () => {
+    setGood(increment);
   };
 
-
-  goodFeedback = () => {
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        good: prevState.good + 1,
-      };
-    });
+  const neutralFeedback = () => {
+    setNeutral(increment);
   };
 
-  neutralFeedback = () => {
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        neutral: prevState.neutral + 1,
-      };
-    });
+  const badFeedback = () => {
+    setBad(increment);
   };
 
-  badFeedback = () => {
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        bad: prevState.bad + 1,
-      };
-    });
-  };
+  const totalFeedback = good + neutral + bad;
+  const positiveFeedback = Math.ceil((good / totalFeedback) * 100);
 
-  TotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
-  };
-
-  PositiveFeedbackPercentage = () => {
-    let TotalFeedback = Math.ceil(
-      (this.state.good / this.TotalFeedback()) * 100
-    );
-
-    return isNaN(TotalFeedback) ? 0 : TotalFeedback;
-  };
-
-  render() {
-    return (
+  return (
+    <>
       <section className={s.Feedback__section}>
         <p className={s.Feedback__title}>Please leave feedback</p>
         <Controls
-          onGood={this.goodFeedback}
-          onNeutral={this.neutralFeedback}
-          onBad={this.badFeedback}
+          goodFeedback={goodFeedback}
+          neutralFeedback={neutralFeedback}
+          badFeedback={badFeedback}
         />
-
         <p className={s.Feedback__title}>Statistics:</p>
-        {this.TotalFeedback() > 0 ? (
+        {totalFeedback > 0 ? (
           <Statistics
-            goodFeedback={this.state.good}
-            neutralFeedback={this.state.neutral}
-            badFeedback={this.state.bad}
-            TotalFeedback={this.TotalFeedback()}
-            PositiveFeedbackPercentage={this.PositiveFeedbackPercentage()}
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            totalFeedback={totalFeedback}
+            positiveFeedback={positiveFeedback}
           />
         ) : (
           <p>Leave feedback to view statistics</p>
         )}
       </section>
-    );
-  }
+    </>
+  );
 }
-
-export default Feedback;
